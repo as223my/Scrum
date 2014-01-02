@@ -1,0 +1,54 @@
+#content{
+    width:1200px;
+   text-align:center;
+}
+
+#register{
+  
+    width:600px;
+    background-color:#F2EEEB;
+    margin-right:auto;
+    margin-left:auto;
+    text-align:left;
+    border-top:4px solid #7D1935;
+    border-right:4px solid #7D1935;
+    border-bottom:8px solid #7D1935;
+    border-left:8px solid #7D1935;
+}
+#registerSmall{
+    width:500px;
+    margin-left:20px;
+ 
+}
+h2{
+    font-family: 'Cardo';
+   font-size:160%;
+}
+
+h1{
+    margin-right:-30px;
+    font-weight:bold;
+    font-size:280%;
+   
+     font-family: 'Old Standard TT';
+     color:#5B0101;
+}
+
+#register p{
+    
+    font-family: 'Old Standard TT';
+    
+}
+
+#newMember, #searchButton, #changeButton, #deleteButton, #allMembers{
+    
+    border-radius:2px;
+    border:2px solid #7D1935;
+      font-family: 'Cardo';
+}
+
+#newMember:hover, #searchButton:hover, #changeButton:hover, #deleteButton:hover,#allMembers:hover,#newMember:focus, #searchButton:focus, #changeButton:focus, #deleteButton:focus, #allMembers:focus{
+
+    font-weight:bold;
+}
+
