@@ -13,6 +13,64 @@
      init:function(e){
         e.preventDefault();
         
+        var allMembersList = document.getElementById("allMembers");
+        
+        allMembersList.onclick = function(){
+            
+               if(registration.textModalCounter === 1){
+                registration.deleteContent();
+                }
+                
+            var modal = document.getElementById("modal");
+        
+            var div= document.createElement("div");
+            div.id ="modalcontent";
+        
+            modal.appendChild(div);
+        
+            var modalcontent = document.getElementById("modalcontent");
+                
+            var h2 = document.createElement("h2");
+            
+            var texth2 = document.createTextNode("Medlemslista");
+            h2.appendChild(texth2);
+    
+            modalcontent.appendChild(h2);
+            
+           
+            for( var i = 0; i < registration.allMembers.length; i += 1){
+                
+                if(registration.allMembers.length > 1 || registration.allMembers[i].firstName !== ""){   
+                    
+                    registration.AllmembersContent(registration.allMembers[i].firstName,registration.allMembers[i].lastName,registration.allMembers[i].phoneNumber,i,modalcontent);
+                }
+            }
+            
+            if(registration.allMembers.length <=1){}
+            var ok = document.createElement("button");
+            ok.id ="ok";
+            var oktext =document.createTextNode("OK");
+        
+            ok.appendChild(oktext);
+            modalcontent.appendChild(ok);
+        
+            modal.style.visibility = "visible";
+         
+            var okclick = document.getElementById("ok");
+            if(registration.allMembers.length <= 1){
+                
+                okclick.style.bottom = "0";
+            }
+         
+            okclick.onclick=function(){
+                
+                modal.style.visibility = "hidden";
+                
+            };
+            registration.textModalCounter = 1;
+        }; 
+        
+        
         var name = document.getElementById("name");
         var lastname = document.getElementById("lastname");
         var phoneNumber = document.getElementById("number");
@@ -181,14 +239,17 @@
          
         okclick.onclick=function(){
              modal.style.visibility = "hidden";
-             registration.textModalCounter = 1;
+         
         };
+        
+        registration.textModalCounter = 1;
     },
     
     deleteContent:function(){
         
         var modalcontent = document.getElementById("modalcontent");
         modalcontent.parentNode.removeChild(modalcontent);
+        
         registration.textModalCounter = 0;
     },
     
@@ -220,8 +281,39 @@
         
         noMemberContent.parentNode.removeChild(noMemberContent);
         registration.counterNoMember = 0;
-    }
-       
+    },
+    
+    AllmembersContent:function(name, lastname, phonenumber, id, modalcontent){
+        
+        var h3 = document.createElement("h3");
+        var h3text =document.createTextNode("Medlem nummer - " + (id + 1));
+        h3.appendChild(h3text);
+        h3.setAttribute('class', 'medlemnr');
+        modalcontent.appendChild(h3);
+        
+        var p1 = document.createElement("p");
+        var p1text = document.createTextNode("Förnamn: " + name);
+        p1.appendChild(p1text);
+        
+        var p2 = document.createElement("p");
+        var p2text = document.createTextNode("Efternamn: " + lastname);
+        p2.appendChild(p2text);
+        
+        var p3 = document.createElement("p");
+        var p3text = document.createTextNode("Telfonnummer: " + phonenumber);
+        p3.appendChild(p3text);
+        
+        var p4 = document.createElement("p");
+        var p4text = document.createTextNode("Id-nummer: " + id);
+        p4.appendChild(p4text);
+        
+        modalcontent.appendChild(p1);
+        modalcontent.appendChild(p2);
+        modalcontent.appendChild(p3);
+        modalcontent.appendChild(p4);
+              
+    },
+    
  };
  
 window.onload = registration.init;
