@@ -17,7 +17,7 @@ medlems profil och få ut en lista av samtliga registrerade medlemmar.
 
 Därmed är 2 krav till i backlogen avklarade. Det som återstår är att med hjälp av medlemsprofilen kunna ändra uppgifter om medlem samt radera vald medlem från medlemslistan. 
 
-Efter första dagen i sprinten var jag lite orolig att jag skulle behöva spendera många timmar dag två, då det kändes lite kämpigt att få till utskrivningen av val medlem på ett snyggt sätt. Men tillslut fick jag till det rätt i koden så man kunde få upp korrektmedlem och att inga överskrivningar skedde då jag klickade på vald medlem tex. 2 gånger. 
+Efter första dagen i sprinten var jag lite orolig att jag skulle behöva spendera många timmar dag två, då det kändes lite kämpigt att få till utskrivningen av val medlem på ett snyggt sätt. Men tillslut fick jag till det rätt i koden så man kunde få upp korrekt medlem och att inga överskrivningar skedde då jag klickade på visa vald medlem 2 gånger. 
 
 Under dag två gick det betydligt snabbare fram, och jag kunde därför "avsluta" sprinten tidigare än beräknat. 
 
