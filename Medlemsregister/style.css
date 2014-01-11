@@ -23,7 +23,6 @@
     
     width:500px;
     margin-left:20px;
- 
 }
 
 h2{
@@ -87,6 +86,7 @@ h1{
     
     font-size:20px;
 }
+
 #modalcontent p, #modalcontent h3{
     
     text-align:left;
@@ -130,4 +130,5 @@ h1{
     
     margin-left:-270px;
 }
+
 
