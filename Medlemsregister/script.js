@@ -122,6 +122,7 @@
                     if(registration.allMembers[content].firstName === ""){
                         
                         registration.noMember();
+                         registration.validId = 0;
              
                     }else{
                
@@ -131,6 +132,7 @@
                 }else{
                     
                    registration.noMember();
+                   registration.validId = 0;
                 }
                 
             }else{
@@ -138,6 +140,7 @@
                     if(registration.counterNoMember === 1){
                         
                         registration.deletenoMember();
+                        registration.validId = 0;
                     }
                 }
         };
@@ -149,14 +152,26 @@
                 
                 var content = search.value;
                 registration.memberContent(registration.allMembers[content].firstName,registration.allMembers[content].lastName,registration.allMembers[content].phoneNumber,content); 
-                search.value = "";
+              
                 
-                registration.validId = 0;
+               
                 
                 if(registration.counterNoMember === 1){
                      registration.deletenoMember();
                 }
             }
+            
+        };
+          
+         var changeButton = document.getElementById("changeButton");
+            changeButton.onclick = function(){
+            
+            if(registration.validId === 1){
+                  var content = search.value;
+                registration.changeMembersContent(registration.allMembers[content].firstName,registration.allMembers[content].lastName,registration.allMembers[content].phoneNumber,content);
+            }
+            
+        
           
         };
     },
@@ -313,6 +328,114 @@
         modalcontent.appendChild(p4);
               
     },
+    
+    changeMembersContent:function(firstname, lastname, phonenumber, id){
+        if(registration.textModalCounter === 1){
+            registration.deleteContent();
+        }
+        
+        var modal = document.getElementById("modal");
+        
+        var div= document.createElement("div");
+        div.id ="modalcontent";
+        
+        modal.appendChild(div);
+        
+        var modalcontent = document.getElementById("modalcontent");
+        
+        var h2 = document.createElement("h2");
+        var h2text =document.createTextNode("Medlem nummer - " + (parseInt(id) + 1));
+        h2.appendChild(h2text);
+        modalcontent.appendChild(h2);
+        
+        var h31 = document.createElement("h3");
+        var h31text = document.createTextNode("Förnamn");
+        var t1 = document.createElement("textarea");
+        t1.id = "t1";
+        t1.setAttribute('rows', 1);
+        t1.value = firstname; 
+        h31.appendChild(h31text);
+        
+        var h32 = document.createElement("h3");
+        var h32text = document.createTextNode("Efternamn");
+        var t2 = document.createElement("textarea");
+        t2.id = "t2";
+        t2.setAttribute('rows', 1);
+        t2.value = lastname; 
+        h32.appendChild(h32text);
+        
+        var h33 = document.createElement("h3");
+        var h33text = document.createTextNode("Telfonnummer");
+        var t3 = document.createElement("textarea");
+        t3.id = "t3";
+        t3.setAttribute('rows', 1);
+        t3.value = phonenumber; 
+        h33.appendChild(h33text);
+        
+        modalcontent.appendChild(h31);
+        modalcontent.appendChild(t1);
+        modalcontent.appendChild(h32);
+        modalcontent.appendChild(t2);
+        modalcontent.appendChild(h33);
+        modalcontent.appendChild(t3);
+        
+         
+        var ok = document.createElement("button");
+        ok.id ="ok";
+        var oktext =document.createTextNode("Spara ändringar");
+        
+        ok.appendChild(oktext);
+        modalcontent.appendChild(ok);
+        
+         var no = document.createElement("button");
+        no.id ="no";
+        var notext =document.createTextNode("Avbryt");
+        
+        no.appendChild(notext);
+        modalcontent.appendChild(no);
+        
+        modal.style.visibility = "visible";
+        
+        var okclick = document.getElementById("ok");
+        okclick.style.bottom = "0";
+        
+        var t1content = document.getElementById("t1");
+        var t2content = document.getElementById("t2");
+        var t3content = document.getElementById("t3");
+         
+        okclick.onclick=function(){
+                if(t1content.value.trim() === "" || t2content.value.trim() === "" || t3content.value.trim() === ""){
+               
+                alert("Alla fält måste vara ifyllda!");
+                
+           }else{
+           
+                var replace = t3content.value.replace(/-/g," ");
+        
+                var phoneNumberCorrect =  replace.split(" ").join("");
+                t3content.value = phoneNumberCorrect;
+                
+                registration.allMembers[id].firstName = t1content.value;
+                registration.allMembers[id].lastName = t2content.value;
+                registration.allMembers[id].phoneNumber = t3content.value;
+            
+                modal.style.visibility = "hidden";
+           }
+             
+         
+        };
+        
+        var noclick = document.getElementById("no");
+        noclick.style.bottom = "0";
+         
+        noclick.onclick=function(){
+             modal.style.visibility = "hidden";
+         
+        };
+        
+        
+        registration.textModalCounter = 1;
+    }
     
  };
  
