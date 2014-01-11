@@ -2,75 +2,70 @@
 
  var registration = {
      
-     allMembers : [], 
-     allId : [],
-     counter : 0,
-     textModalCounter : 0,
-     counterNoMember : 0,
-     vailidId : 0,
+    allMembers : [], 
+    allId : [],
+    counter : 0,
+    textModalCounter : 0,
+    counterNoMember : 0,
+    vailidId : 0,
+    memberNumber : 1,
      
-     
-     init:function(e){
+    init:function(e){
         e.preventDefault();
         
         var allMembersList = document.getElementById("allMembers");
         
         allMembersList.onclick = function(){
             
-               if(registration.textModalCounter === 1){
+            if(registration.textModalCounter === 1){
                 registration.deleteContent();
-                }
+            }
                 
+            registration.memberNumber = 1;
             var modal = document.getElementById("modal");
-        
+            
             var div= document.createElement("div");
             div.id ="modalcontent";
-        
             modal.appendChild(div);
-        
-            var modalcontent = document.getElementById("modalcontent");
-                
+                    
             var h2 = document.createElement("h2");
-            
             var texth2 = document.createTextNode("Medlemslista");
             h2.appendChild(texth2);
-    
+            
+            var modalcontent = document.getElementById("modalcontent");
             modalcontent.appendChild(h2);
-            
-           
-            for( var i = 0; i < registration.allMembers.length; i += 1){
                 
-                if(registration.allMembers.length > 1 || registration.allMembers[i].firstName !== ""){   
+                for( var i = 0; i < registration.allMembers.length; i += 1){
                     
-                    registration.AllmembersContent(registration.allMembers[i].firstName,registration.allMembers[i].lastName,registration.allMembers[i].phoneNumber,i,modalcontent);
+                    if(registration.allMembers.length > 0 && registration.allMembers[i].firstName !== ""){   
+                        
+                        registration.AllmembersContent(registration.allMembers[i].firstName,registration.allMembers[i].lastName,registration.allMembers[i].phoneNumber,i,modalcontent);
+                    }
                 }
-            }
-            
-            if(registration.allMembers.length <=1){}
+                
+           
             var ok = document.createElement("button");
             ok.id ="ok";
             var oktext =document.createTextNode("OK");
-        
             ok.appendChild(oktext);
             modalcontent.appendChild(ok);
-        
+            
             modal.style.visibility = "visible";
-         
+             
             var okclick = document.getElementById("ok");
             if(registration.allMembers.length <= 1){
-                
+                    
                 okclick.style.bottom = "0";
             }
-         
+             
             okclick.onclick=function(){
-                
+                    
                 modal.style.visibility = "hidden";
-                
             };
+        
             registration.textModalCounter = 1;
         }; 
-        
-        
+    
         var name = document.getElementById("name");
         var lastname = document.getElementById("lastname");
         var phoneNumber = document.getElementById("number");
@@ -78,29 +73,23 @@
         phoneNumber.onblur = function(){
                 
             var replace = phoneNumber.value.replace(/-/g," ");
-        
             var phoneNumberCorrect =  replace.split(" ").join("");
-                
             phoneNumber.value = phoneNumberCorrect;
-                
         }; 
         
         var newMember = document.getElementById("newMember");
          
         newMember.onclick = function(){
            
-           if(name.value.trim() === "" || lastname.value.trim() === "" || phoneNumber.value.trim() === ""){
+            if(name.value.trim() === "" || lastname.value.trim() === "" || phoneNumber.value.trim() === ""){
                
                 alert("Alla fält måste vara ifyllda innan registrering kan ske!");
                 
-           }else{
+            }else{
            
                 registration.allMembers.push({firstName: name.value, lastName: lastname.value, phoneNumber: phoneNumber.value}); 
-            
                 registration.allId[registration.counter] = registration.allMembers.length - 1;
-           
                 registration.memberContent(name.value, lastname.value,phoneNumber.value, registration.allId[registration.counter]);
-            
             
                 registration.counter += 1;
                 name.value = "";
@@ -137,12 +126,12 @@
                 
             }else{
                 
-                    if(registration.counterNoMember === 1){
+                if(registration.counterNoMember === 1){
                         
-                        registration.deletenoMember();
-                        registration.validId = 0;
-                    }
+                    registration.deletenoMember();
+                    registration.validId = 0;
                 }
+            }
         };
         
         var searchButton = document.getElementById("searchButton");
@@ -152,27 +141,48 @@
                 
                 var content = search.value;
                 registration.memberContent(registration.allMembers[content].firstName,registration.allMembers[content].lastName,registration.allMembers[content].phoneNumber,content); 
-              
-                
-               
                 
                 if(registration.counterNoMember === 1){
                      registration.deletenoMember();
                 }
+                
+                search.value = "";
             }
             
         };
           
-         var changeButton = document.getElementById("changeButton");
-            changeButton.onclick = function(){
+        var changeButton = document.getElementById("changeButton");
+        changeButton.onclick = function(){
             
             if(registration.validId === 1){
-                  var content = search.value;
+                
+                var content = search.value;
                 registration.changeMembersContent(registration.allMembers[content].firstName,registration.allMembers[content].lastName,registration.allMembers[content].phoneNumber,content);
+                
+                if(registration.counterNoMember === 1){
+                     registration.deletenoMember();
+                }
+                
+                search.value = "";
             }
             
+        };
         
-          
+        var deleteButton = document.getElementById("deleteButton");
+        
+          deleteButton.onclick = function(){
+            
+            if(registration.validId === 1){
+                
+                var content = search.value;
+                registration.deleteMember(registration.allMembers[content].firstName,registration.allMembers[content].lastName,registration.allMembers[content].phoneNumber,content);
+                
+                if(registration.counterNoMember === 1){
+                     registration.deletenoMember();
+                }
+                
+                search.value = "";
+            }
         };
     },
 
@@ -183,19 +193,15 @@
         }
         
         var modal = document.getElementById("modal");
-        
         var div= document.createElement("div");
         div.id ="modalcontent";
-        
         modal.appendChild(div);
         
-        var modalcontent = document.getElementById("modalcontent");
-        
         var h2 = document.createElement("h2");
-            
         var texth2 = document.createTextNode("Medlem");
         h2.appendChild(texth2);
-    
+        
+        var modalcontent = document.getElementById("modalcontent");
         modalcontent.appendChild(h2);
         
         var h31= document.createElement("h3");
@@ -301,7 +307,7 @@
     AllmembersContent:function(name, lastname, phonenumber, id, modalcontent){
         
         var h3 = document.createElement("h3");
-        var h3text =document.createTextNode("Medlem nummer - " + (id + 1));
+        var h3text =document.createTextNode("Medlem nummer - " + registration.memberNumber);
         h3.appendChild(h3text);
         h3.setAttribute('class', 'medlemnr');
         modalcontent.appendChild(h3);
@@ -326,6 +332,8 @@
         modalcontent.appendChild(p2);
         modalcontent.appendChild(p3);
         modalcontent.appendChild(p4);
+        
+        registration.memberNumber += 1;
               
     },
     
@@ -344,7 +352,7 @@
         var modalcontent = document.getElementById("modalcontent");
         
         var h2 = document.createElement("h2");
-        var h2text =document.createTextNode("Medlem nummer - " + (parseInt(id) + 1));
+        var h2text =document.createTextNode("Medlem - id: " + id);
         h2.appendChild(h2text);
         modalcontent.appendChild(h2);
         
@@ -378,7 +386,6 @@
         modalcontent.appendChild(t2);
         modalcontent.appendChild(h33);
         modalcontent.appendChild(t3);
-        
          
         var ok = document.createElement("button");
         ok.id ="ok";
@@ -421,8 +428,6 @@
             
                 modal.style.visibility = "hidden";
            }
-             
-         
         };
         
         var noclick = document.getElementById("no");
@@ -433,6 +438,107 @@
          
         };
         
+        registration.textModalCounter = 1;
+    },
+    
+    deleteMember:function(name, lastname, phonenumber, id){
+        
+         if(registration.textModalCounter === 1){
+            registration.deleteContent();
+        }
+        
+        var modal = document.getElementById("modal");
+        
+        var div= document.createElement("div");
+        div.id ="modalcontent";
+        
+        modal.appendChild(div);
+        
+        var modalcontent = document.getElementById("modalcontent");
+        
+        var h2 = document.createElement("h2");
+            
+        var texth2 = document.createTextNode("Medlem");
+        h2.appendChild(texth2);
+    
+        modalcontent.appendChild(h2);
+        
+        var h31= document.createElement("h3");
+        var h3text1 =document.createTextNode("Förnamn");
+        
+        var h32 = document.createElement("h3");
+        var h3text2 =document.createTextNode("Efternamn");
+        
+        var h33 = document.createElement("h3");
+        var h3text3 =document.createTextNode("Telefonnummer");
+        
+        var h34 = document.createElement("h3");
+        var h3text4 =document.createTextNode("Id-nummer");
+        
+        var p1 = document.createElement("p");
+        var ptext1 =document.createTextNode(name);
+        
+        var p2 = document.createElement("p");
+        var ptext2 =document.createTextNode(lastname);
+        
+        var p3 = document.createElement("p");
+        var ptext3 =document.createTextNode(phonenumber);
+        
+        var p4 = document.createElement("p");
+        var ptext4 =document.createTextNode(id);
+        
+        h31.appendChild(h3text1);
+        h32.appendChild(h3text2);
+        h33.appendChild(h3text3);
+        h34.appendChild(h3text4);
+        
+        p1.appendChild(ptext1);
+        p2.appendChild(ptext2);
+        p3.appendChild(ptext3);
+        p4.appendChild(ptext4);
+        
+        modalcontent.appendChild(h31);
+        modalcontent.appendChild(p1);
+        modalcontent.appendChild(h32);
+        modalcontent.appendChild(p2);
+        modalcontent.appendChild(h33);
+        modalcontent.appendChild(p3);
+        modalcontent.appendChild(h34);
+        modalcontent.appendChild(p4);
+        
+        var ok = document.createElement("button");
+        ok.id ="ok";
+        var oktext =document.createTextNode("Ta bort medlem");
+        
+        ok.appendChild(oktext);
+        modalcontent.appendChild(ok);
+        
+        var no = document.createElement("button");
+        no.id ="no";
+        var notext =document.createTextNode("Avbryt");
+        
+        no.appendChild(notext);
+        modalcontent.appendChild(no);
+        
+        modal.style.visibility = "visible";
+         
+        var okclick = document.getElementById("ok");
+         
+        okclick.onclick=function(){
+            
+            registration.allMembers[id].firstName = "";
+            registration.allMembers[id].lastName = "";
+            registration.allMembers[id].phoneNumber = "";
+            modal.style.visibility = "hidden";
+         
+        };
+        
+        var noclick = document.getElementById("no");
+         
+        noclick.onclick=function(){
+             modal.style.visibility = "hidden";
+         
+        };
         
         registration.textModalCounter = 1;
     }
