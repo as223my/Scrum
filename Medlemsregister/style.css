@@ -46,14 +46,14 @@ h1{
     font-family: 'Old Standard TT';
 }
 
-#newMember, #searchButton, #changeButton, #deleteButton, #allMembers, #ok{
+#newMember, #searchButton, #changeButton, #deleteButton, #allMembers, #ok, #no{
     
     border-radius:2px;
     border:2px solid #7D1935;
     font-family: 'Cardo';
 }
 
-#newMember:hover, #searchButton:hover, #changeButton:hover, #deleteButton:hover,#allMembers:hover,#ok:hover,#newMember:focus, #searchButton:focus, #changeButton:focus, #deleteButton:focus, #allMembers:focus, #ok:focus{
+#newMember:hover, #searchButton:hover, #changeButton:hover, #deleteButton:hover,#allMembers:hover,#ok:hover,#no:hover,#newMember:focus, #searchButton:focus, #changeButton:focus, #deleteButton:focus, #allMembers:focus, #ok:focus, #no:focus{
 
     font-weight:bold;
 }
@@ -118,3 +118,16 @@ h1{
     margin-bottom:20px;
     padding:5px;
 }
+
+#no{
+    position: absolute;
+    margin-bottom:20px;
+    margin-left:-100px;
+    padding:5px;
+}
+
+#t1,#t2,#t3{
+    
+    margin-left:-270px;
+}
+
