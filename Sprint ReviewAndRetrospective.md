@@ -25,9 +25,8 @@ Inför den tredje sprinten är jag lite orolig för hur jag ska lösa ändring a
 
 # Sprint review and retrospective - 3 #
 
-Alla krav i backlogen är nu färdiga! Sprinten började lite vingligt, hade lite svårt för att bestämma hur jag skulle utforma krav 4 i backlogen. Jag insåg att jag hade programmerat själva programmet bundet till id-nummret, som speglar vilken plats i arrayen medlemens information befinner sig. Därför blev det lite problematiskt när jag ville radera en medlem. 
+Alla krav i backlogen är nu färdiga! Sprinten började lite vingligt, hade lite svårt för att bestämma hur jag skulle utforma krav 4 i backlogen. Jag insåg att jag hade programmerat själva programmet bundet till id-nummret, som speglar vilken plats i arrayen medlemens information befinner sig. Därför blev det lite problematiskt när jag ville radera en medlem. Löste detta med att radera all medlems information i arrayen, men behöll platsen kvar.
 
-Löste detta med att radera all medlems information i arrayen, men platsen finns kvar. 
-Innan jag började med min sista sprint var jag lite orolig över hu jag skulle genomföra ändring av specifik medlems uppgifter. Detta gick dock bättre än förväntat och jag kunde knappa in på mina timmar så att alla krav han med innan sprinten avslutades. 
+Innan jag började med min sista sprint var jag lite orolig över hur jag skulle genomföra karv 3 i backlogen, dvs ändring av en specifik medlems uppgifter. Detta gick dock bättre än förväntat och jag kunde knappa in på mina timmar så att alla krav han med innan sprinten avslutades. 
 
 Målen är därmed uppfyllda, och medlemsregistret klart! 
