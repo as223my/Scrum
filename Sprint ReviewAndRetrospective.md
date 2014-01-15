@@ -23,3 +23,11 @@ Under dag två gick det betydligt snabbare fram, och jag kunde därför "avsluta
 
 Inför den tredje sprinten är jag lite orolig för hur jag ska lösa ändring av uppgifter om medlem, då detta är nytt för mig. Raderingen går förhoppningsvis snabbt att genomföra så att jag kan lägga min enerigi på de två första uppgifterna i listan. 
 
+# Sprint review and retrospective - 3 #
+
+Alla krav i backlogen är nu färdiga! Sprinten började lite vingligt, hade lite svårt för att bestämma hur jag skulle utforma krav 4 i backlogen. Jag insåg att jag hade programmerat själva programmet bundet till id-nummret, som speglar vilken plats i arrayen medlemens information befinner sig. Därför blev det lite problematiskt när jag ville radera en medlem. 
+
+Löste detta med att radera all medlems information i arrayen, men platsen finns kvar. 
+Innan jag började med min sista sprint var jag lite orolig över hu jag skulle genomföra ändring av specifik medlems uppgifter. Detta gick dock bättre än förväntat och jag kunde knappa in på mina timmar så att alla krav han med innan sprinten avslutades. 
+
+Målen är därmed uppfyllda, och medlemsregistret klart! 
